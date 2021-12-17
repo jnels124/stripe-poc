@@ -1,0 +1,27 @@
+<div class="customer_page mx-3 my-3">
+  <div class="row" *ngIf="!showNewForm">
+    <div class="col-12">
+      <button class="btn btn-primary" (click)="showNewForm = true">
+        Add New Customer
+      </button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+
+        <form *ngIf="showNewForm" (ngSubmit)="onSubmit()" #newCustomerForm="ngForm">
+          <div class="form-group">
+            <label for="newCustomerName">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="newCustomerName" name="newCustomerName" id="newCustomerName">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <ul class="list-group" *ngIf="!showNewForm">
+          <li class="list-group-item" *ngFor="let customer of customerList" (click)="goToCustomerDetail(customer.id)">{{customer.id}} - {{customer.name}}</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>

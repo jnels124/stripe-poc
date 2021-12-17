@@ -1,0 +1,51 @@
+<div class="charge_page mx-3 my-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+
+        <form (ngSubmit)="onSubmit()" #chargeForm="ngForm">
+          <div class="form-group">
+            <div class="dropdown" id="customer">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{chargeInfo.customer || 'Customer'}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button" *ngFor="let customerId of objectKeys(customerPaymentMethodMap)" (click)="chargeInfo.customer=customerId">{{customerId}}</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="dropdown" id="connectedAccount">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{chargeInfo?.transfer_data?.destination || 'Connected Account'}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button" *ngFor="let connectedAccount of connectedAccounts" (click)="chargeInfo.transfer_data.destination=connectedAccount.id">{{connectedAccount.id}}</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" *ngIf="chargeInfo.customer">
+            <div class="dropdown" id="paymentMethod" >
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{chargeInfo.payment_method || 'Payment Method'}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button" *ngFor="let paymentMethod of customerPaymentMethodMap[chargeInfo.customer]" (click)="chargeInfo.payment_method=paymentMethod.id">{{paymentMethod.card.brand + '-' + paymentMethod.card.last4}}</button>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="chargeInfo.customer">
+            <div class="form-group">
+              <label for="amount" class="col-4">Amount</label>
+              <div class="col-8">
+                <input type="number" class="form-control" [(ngModel)]="chargeInfo.amount" name="amount" id="amount">
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,18 +1,15 @@
-package com.example.stripespoc.web.request;
+package com.example.stripespoc.web.stripes;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
-@Data
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CreateCustomerRequest {
-    @NotBlank
-    @Size(min = 2, max = 300)
-    private String name;
+@Data
+public class ErrorResponse implements StripeResponse {
+    private String code;
+    private String message;
+    private String param;
 }

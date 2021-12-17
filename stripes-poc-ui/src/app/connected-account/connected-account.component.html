@@ -1,0 +1,23 @@
+<div class="customer_detail_page mx-3 my-3">
+  <div class="row">
+    <div class="col-xs-12 formSection">
+      <h3 id="longForm-stepOne-header">Connected Accounts</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-primary" (click)="addNewConnectedAccount()">
+        Add New Connected Account
+      </button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let connectedAccount of connectedAccounts">{{connectedAccount.id}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

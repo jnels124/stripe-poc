@@ -1,0 +1,42 @@
+<div class="charge_page mx-3 my-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            Charge Id {{chargeDetails.id}}
+          </div>
+          <div class="card-body">
+            <div class="row d-flex flex-row">
+              <div class="col-6">
+                <div id="amount"><span class="mr-1">Amount:</span>{{(chargeDetails.amount || 0) / 100 | currency: (chargeDetails.currency || 'usd').toUpperCase()}}</div>
+              </div>
+              <div class="col-6">
+                <div id="receipt"><span class="mr-1">Receipt:</span><a target="_blank" [href]="chargeDetails.receipt_url">See On Stripe.com</a></div>
+              </div>
+            </div>
+
+            <div class="row d-flex flex-row">
+              <div class="col-6">
+                <div id="partner"><span class="mr-1">Service Provider: </span>{{chargeDetails.transfer_data.destination}}</div>
+              </div>
+              <div class="col-6">
+                <div id="partnerAmount"><span class="mr-1">Service Provider Amount: </span>{{(chargeDetails.transfer_data.amount || 0) / 100 | currency: (chargeDetails.currency || 'usd').toUpperCase()}}</div>
+              </div>
+            </div>
+
+            <div class="row d-flex flex-row">
+              <div class="col-6">
+                <div id="customer"><span class="mr-1">Customer: </span>{{chargeDetails.customer}}</div>
+              </div>
+              <div class="col-6">
+                <div id="paymentMethod"><span class="mr-1">Payment Method: </span>{{chargeDetails.payment_method}}</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

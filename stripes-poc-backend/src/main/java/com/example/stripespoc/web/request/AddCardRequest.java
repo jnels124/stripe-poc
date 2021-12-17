@@ -3,13 +3,11 @@ package com.example.stripespoc.web.request;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.time.Instant;
 
 @Data
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
@@ -17,16 +15,16 @@ public class AddCardRequest {
     @Valid
     private CardInfo card;
     private String type = "card";
-    private String customerId;
+    private String customer;
 
     @JsonIgnore
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomer() {
+        return customer;
     }
 
     @JsonProperty
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 
     @Data
