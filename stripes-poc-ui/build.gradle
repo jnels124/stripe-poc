@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id "com.github.node-gradle.node" version "2.2.4"
+}
+
+node {
+    version = '17.2.0'
+    npmVersion = '8.1.4'
+//    distBaseUrl = 'https://nodejs.org/dist'
+    download = true
+}
+
+task buildUi(type: NpmTask, dependsOn: npmInstall) {
+    args = ['run', 'build-prod']
+}
+
+task moveFiles(type: NpmTask, dependsOn: buildUi) {
+    args = ['run', 'move-files']
+}
+
+processResources.dependsOn(moveFiles)
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["$projectDir/dist/stripes-poc-ui/output"]
+        }
+    }
+}

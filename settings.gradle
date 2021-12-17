@@ -1,0 +1,4 @@
+rootProject.name = 'stripes-poc'
+
+include 'stripes-poc-backend'
+include 'stripes-poc-ui'
